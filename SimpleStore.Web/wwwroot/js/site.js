@@ -40,7 +40,9 @@
 $('#cart-item-list :button').on('click', function () {
     let id = $(this.closest('.card')).attr('id')
 
-    $.post('/Cart/Remove', { id: id })
+    $.post('/Cart/Remove', { id: id }).done(function () {
+        $('#checkout').load('/Cart/CheckoutPartial')
+    })
 
     $(this.closest('.col')).remove()
 })
@@ -61,7 +63,7 @@ $('#cart-item-list input[name="quantity"]').on('change', function () {
     let id = $(this.closest('.card')).attr('id')
     let quantity = $(this).val()
 
-    $.post('/Cart/Update', { id: id, quantity: quantity })
-
-    $('#checkout').load('/Cart/CheckoutPartial')
+    $.post('/Cart/Update', { id: id, quantity: quantity }).done(function () {
+        $('#checkout').load('/Cart/CheckoutPartial')
+    })
 })
