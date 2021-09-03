@@ -4,7 +4,11 @@
     @foreach (var cartItem in Model)
     {
         <div class="col mb-2">
-            <partial name="_Item" model="@cartItem" />
+            <partial name="_Item" model="cartItem" />
         </div>
     }
+</div>
+
+<div id="checkout">
+    <partial name="_Checkout" />
 </div>

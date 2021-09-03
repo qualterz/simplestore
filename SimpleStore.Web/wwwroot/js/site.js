@@ -62,4 +62,6 @@ $('#cart-item-list input[name="quantity"]').on('change', function () {
     let quantity = $(this).val()
 
     $.post('/Cart/Update', { id: id, quantity: quantity })
+
+    $('#checkout').load('/Cart/CheckoutPartial')
 })

@@ -78,6 +78,7 @@ namespace SimpleStore.Web
             #region Application
             services.AddScoped<ICharacteristicService, CharacteristicService>();
             services.AddScoped<IItemService, ItemService>();
+            services.AddScoped<IOrderService, OrderService>();
             #endregion
 
             #region Web

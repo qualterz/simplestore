@@ -20,6 +20,21 @@ namespace SimpleStore.Web.Mappings
                     options => options.MapFrom(
                         source => source.CharacteristicId))
                 .ReverseMap();
+
+            CreateMap<CartItemViewModel, OrderDetailModel>()
+                .ForPath(
+                    destination => destination.Item.ItemId,
+                    options => options.MapFrom(
+                        source => source.Item.ItemId))
+                //.ForMember(
+                //    destination => destination.Item.ItemId,
+                //    options => options.MapFrom(
+                //        source => source.Item.ItemId))
+                .ForMember(
+                    destination => destination.Quantity,
+                    options => options.MapFrom(
+                        source => source.Quantity))
+                .ReverseMap();
         }
     }
 }

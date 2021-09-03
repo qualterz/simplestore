@@ -1,4 +1,7 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using AutoMapper;
+using Microsoft.AspNetCore.Mvc;
+using SimpleStore.Application.Models;
+using SimpleStore.Application.Services;
 using SimpleStore.Web.Areas.Store.Services;
 using System;
 using System.Collections.Generic;
@@ -11,10 +14,17 @@ namespace SimpleStore.Web.Areas.Store.Controllers
     public class CartController : Controller
     {
         private readonly ICartService cartService;
+        private readonly IOrderService orderService;
+        private readonly IMapper mapper;
 
-        public CartController(ICartService cartService)
+        public CartController(
+            ICartService cartService,
+            IOrderService orderService,
+            IMapper mapper)
         {
             this.cartService = cartService;
+            this.orderService = orderService;
+            this.mapper = mapper;
         }
 
         public IActionResult Index()
@@ -46,6 +56,29 @@ namespace SimpleStore.Web.Areas.Store.Controllers
             cartService.Update(id, quantity);
 
             return Ok();
+        }
+
+        public PartialViewResult CheckoutPartial()
+        {
+            return PartialView("_Checkout", cartService.GetItems());
+        }
+
+        [HttpPost]
+        public IActionResult Checkout()
+        {
+            var cartItems = cartService.GetItems();
+
+            var orderDetails = mapper.Map<List<OrderDetailModel>>(cartItems);
+
+            var order = new OrderModel()
+            {
+                Details = orderDetails,
+            };
+
+            orderService.CreateOrder(order);
+            cartService.ClearCart();
+
+            return RedirectToAction("Index", "Home");
         }
     }
 }

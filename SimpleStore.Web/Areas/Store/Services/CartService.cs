@@ -18,6 +18,7 @@ namespace SimpleStore.Web.Areas.Store.Services
         public void Remove(int id);
         public void Update(int id, int quantity);
         public bool Contains(int id);
+        void ClearCart();
     }
 
     public class CartService : ICartService
@@ -92,6 +93,12 @@ namespace SimpleStore.Web.Areas.Store.Services
         public bool Contains(int id)
         {
             return items.Any(e => e.Item.ItemId == id);
+        }
+
+        public void ClearCart()
+        {
+            items.Clear();
+            SetItemsToSession();
         }
     }
 }

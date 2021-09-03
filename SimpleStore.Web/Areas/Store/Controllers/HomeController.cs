@@ -36,7 +36,6 @@ namespace SimpleStore.Web.Areas.Store.Controllers
             itemViewModels.ForEach(
                 e => e.InCart = cartItems.Any(c => c.Item.ItemId == e.ItemId));
 
-
             return View(itemViewModels);
         }
     }
