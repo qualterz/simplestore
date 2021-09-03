@@ -1,7 +1,7 @@
 ﻿@model SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel
 
 <div class="col mb-2">
-    <div class="card card-body" id="@Model.ItemId">
+    <div class="card card-body">
         <div class="card-title">
             <div class="d-flex justify-content-between">
                 <a class="h5" asp-route-id="@Model.ItemId"
@@ -9,15 +9,7 @@
                     @Model.Name
                 </a>
 
-                @{
-                    var color = Model.InCart ? "success" : "outline-success";
-                    var symbol = Model.InCart ? "dash-fill" : "plus";
-                    var inCart = Model.InCart ? "in-cart" : "";
-                }
-
-                <button class="btn btn-@color @inCart">
-                    <i class="bi bi-cart-@symbol"></i>
-                </button>
+                <partial name="_AddToCartButton" model="Model" />
             </div>
         </div>
         <small class="card-subtitle mb-2">

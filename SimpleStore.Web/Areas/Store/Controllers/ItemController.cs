@@ -1,6 +1,7 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Application.Services;
+using SimpleStore.Web.Areas.Store.Services;
 using SimpleStore.Web.Areas.Store.ViewModels;
 using System;
 using System.Collections.Generic;
@@ -13,12 +14,15 @@ namespace SimpleStore.Web.Areas.Store.Controllers
     public class ItemController : Controller
     {
         private readonly IItemService itemService;
+        private readonly ICartService cartService;
         private readonly IMapper mapper;
         public ItemController(
             IItemService itemService,
+            ICartService cartService,
             IMapper mapper)
         {
             this.itemService = itemService;
+            this.cartService = cartService;
             this.mapper = mapper;
         }
 
@@ -26,6 +30,8 @@ namespace SimpleStore.Web.Areas.Store.Controllers
         {
             var item = itemService.GetItemById(id);
             var itemViewModel = mapper.Map<ItemViewModel>(item);
+
+            itemViewModel.InCart = cartService.Contains(id);
 
             return View(itemViewModel);
         }

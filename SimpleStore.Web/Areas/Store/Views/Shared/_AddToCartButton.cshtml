@@ -1,0 +1,12 @@
+﻿@model SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel
+
+@{
+    var color = Model.InCart ? "success" : "outline-success";
+    var symbol = Model.InCart ? "dash-fill" : "plus";
+    var inCart = Model.InCart ? "in-cart" : "";
+}
+
+<button class="btn btn-@color @inCart" name="addToCartButton">
+    @Html.HiddenFor(e => e.ItemId)
+    <i class="bi bi-cart-@symbol"></i>
+</button>

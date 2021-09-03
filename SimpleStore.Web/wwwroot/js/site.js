@@ -1,4 +1,4 @@
-﻿$('#item-list :button').on('click', function () {
+﻿$(':button[name="addToCartButton"]').on('click', function () {
     let inCartClass = 'in-cart'
     let inCart = $(this).hasClass(inCartClass)
 
@@ -26,7 +26,7 @@
             .addClass(iconRemoveClass)
     }
 
-    let id = $(this.closest('.card')).attr('id')
+    let id = $(this).find('input').attr('value')
 
     if (inCart) {
         $.post('/Cart/Remove', { id: id })

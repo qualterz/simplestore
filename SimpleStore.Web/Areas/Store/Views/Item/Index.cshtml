@@ -1,7 +1,13 @@
 ﻿@model SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel
 
-<h1>@Model.Name</h1>
+<div class="d-flex">
+    <h1>@Model.Name</h1>
+    <div class="ms-auto">
+        <partial name="_AddToCartButton" model="Model" />
+    </div>
+</div>
 <p>@Model.Price credits</p>
+
 
 @if (Model.Characteristics.Any())
 {
