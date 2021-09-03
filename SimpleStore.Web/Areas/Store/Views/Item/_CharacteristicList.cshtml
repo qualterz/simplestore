@@ -1,0 +1,12 @@
+﻿@model IEnumerable<SimpleStore.Web.Areas.Store.ViewModels.CharacteristicViewModel>
+
+<div>
+    <h4>Characteristics</h4>
+
+    <div class="list-group list-group-flush">
+        @foreach (var characteristic in Model)
+        {
+            <partial name="_CharacteristicItem" model="@characteristic" />
+        }
+    </div>
+</div>

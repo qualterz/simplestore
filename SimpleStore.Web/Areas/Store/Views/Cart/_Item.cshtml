@@ -1,0 +1,31 @@
+﻿@model SimpleStore.Web.Areas.Store.ViewModels.CartItemViewModel
+@{
+    var item = Model.Item;
+}
+
+<div class="card card-body" id="@item.ItemId">
+    <div class="card-title">
+        <div class="d-flex justify-content-between">
+            <a class="h5" asp-route-id="@item.ItemId"
+               asp-controller="Item" asp-action="Index">
+                @item.Name
+            </a>
+
+            <p>
+                @item.Price
+                <span class="fw-lighter">credits</span>
+            </p>
+        </div>
+    </div>
+
+    <div class="d-flex align-self-end">
+        <div class="input-group">
+            <input class="form-control" style="width: 4em" name="quantity"
+                   type="number" min="1" value="@Model.Quantity" />
+
+            <button class="btn btn-outline-danger">
+                <i class="bi bi-cart-dash"></i>
+            </button>
+        </div>
+    </div>
+</div>

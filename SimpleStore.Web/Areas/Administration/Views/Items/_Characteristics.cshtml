@@ -1,0 +1,34 @@
+﻿@model SimpleStore.Web.Areas.Administration.ViewModels.ItemViewModel
+@{
+    var characteristicToAssign = new SimpleStore.Web.Areas.Administration.ViewModels.CharacteristicViewModel()
+    {
+        ItemId = Model.ItemId,
+    };
+}
+
+
+<div class="card">
+    <div class="card-header d-flex align-items-center">
+        <h5 class="card-title">Item Characteristics</h5>
+        <button type="button" class="btn btn-primary ms-auto" data-bs-toggle="modal" data-bs-target="#assignCharacteristicModal">
+            <i class="bi bi-file-earmark-plus"></i>
+            Assign
+        </button>
+        <partial name="_AssignCharacteristic" model="characteristicToAssign" />
+    </div>
+
+    <div class="card-body">
+        <div class="list-group list-group-flush">
+            @foreach (var characteristic in Model.Characteristics)
+            {
+                <div class="list-group-item">
+                    <div class="d-flex">
+                        <p>@characteristic.Name</p>
+                        <partial name="_UnassignCharacteristic" model="characteristic" />
+                    </div>
+                    <p class="fw-lighter">@characteristic.Value</p>
+                </div>
+            }
+        </div>
+    </div>
+</div>

@@ -1,0 +1,34 @@
+﻿@model SimpleStore.Web.ViewModels.ItemViewModel
+
+<div class="row">
+    <div class="col">
+        <form method="post" asp-action="Edit">
+            @Html.HiddenFor(e => e.Id)
+
+            <div class="d-flex flex-column">
+                <span asp-validation-for="Name" class="text-danger"></span>
+                <input class="form-control" placeholder="@Html.NameFor(e => e.Name)" asp-for="Name" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+                <input class="form-control" placeholder="@Html.NameFor(e => e.Price)" asp-for="Price" />
+
+                <div class="d-flex flex-row gap-1">
+                    <button class="flex-fill btn btn-primary">Submit</button>
+                    <a class="flex-fill btn btn-outline-primary" asp-controller="Home" asp-action="Index">Go Back</a>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    @if (Model.Id != default)
+    {
+        <div class="col d-flex flex-column">
+            @await Html.PartialAsync("../Characteristic/Index", Model)
+
+            <a class="btn btn-primary"
+               asp-route-itemId="@Model.Id" asp-controller="Characteristic" asp-action="Assign">
+                Assign
+            </a>
+        </div>
+    }
+</div>
+

@@ -1,0 +1,9 @@
+﻿@model SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel
+
+<h1>@Model.Name</h1>
+<p>@Model.Price credits</p>
+
+@if (Model.Characteristics.Any())
+{
+    <partial name="_CharacteristicList" model="@Model.Characteristics" />
+}

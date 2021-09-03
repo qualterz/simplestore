@@ -1,0 +1,28 @@
+﻿@model SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel
+
+<div class="col mb-2">
+    <div class="card card-body" id="@Model.ItemId">
+        <div class="card-title">
+            <div class="d-flex justify-content-between">
+                <a class="h5" asp-route-id="@Model.ItemId"
+                   asp-controller="Item" asp-action="Index">
+                    @Model.Name
+                </a>
+
+                @{
+                    var color = Model.InCart ? "success" : "outline-success";
+                    var symbol = Model.InCart ? "dash-fill" : "plus";
+                    var inCart = Model.InCart ? "in-cart" : "";
+                }
+
+                <button class="btn btn-@color @inCart">
+                    <i class="bi bi-cart-@symbol"></i>
+                </button>
+            </div>
+        </div>
+        <small class="card-subtitle mb-2">
+            @Model.Price
+            <span class="fw-lighter">credits</span>
+        </small>
+    </div>
+</div>

@@ -1,0 +1,13 @@
+﻿@model SimpleStore.Web.ViewModels.CharacteristicViewModel
+
+<form method="post" asp-action="Assign">
+    @Html.HiddenFor(e => e.ItemId)
+
+    <div class="d-flex flex-column">
+        <span asp-validation-for="Name" class="text-danger"></span>
+        <input class="form-control" placeholder="@Html.NameFor(e => e.Name)" asp-for="Name" />
+        <span asp-validation-for="Value" class="text-danger"></span>
+        <input class="form-control" placeholder="@Html.NameFor(e => e.Value)" asp-for="Value" />
+        <button class="btn btn-primary" type="submit">Submit</button>
+    </div>
+</form>

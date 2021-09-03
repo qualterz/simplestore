@@ -1,0 +1,16 @@
+﻿@model SimpleStore.Web.ViewModels.ItemViewModel
+
+<div class="list-group">
+    @foreach (var characteristic in Model.Characteristics)
+    {
+        <div class="list-group-item">
+            <div class="d-flex flex-row justify-content-between">
+                <h5 class="mb-1">@characteristic.Name</h5>
+                <form method="post">
+                    <button class="btn btn-sm btn-outline-danger" asp-route-characteristicId="@characteristic.Id" asp-route-itemId="@Model.Id" asp-controller="ItemCharacteristic" asp-action="Unassign">Unassign</button>
+                </form>
+            </div>
+            <small>@characteristic.Value</small>
+        </div>
+    }
+</div>

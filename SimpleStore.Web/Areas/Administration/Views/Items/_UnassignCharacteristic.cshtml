@@ -1,0 +1,12 @@
+﻿@model SimpleStore.Web.Areas.Administration.ViewModels.CharacteristicViewModel
+
+<div class="ms-auto">
+    <form method="post" asp-action="UnassignCharacteristic">
+        <input type="hidden" asp-for="ItemId" />
+        <input type="hidden" asp-for="CharacteristicId" />
+
+        <button class="btn btn-outline-danger">
+            <i class="bi bi-file-earmark-minus-fill"></i>
+        </button>
+    </form>
+</div>
