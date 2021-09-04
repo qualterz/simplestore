@@ -68,8 +68,8 @@ $('#cart-item-list input[name="quantity"]').on('change', function () {
     })
 })
 
-$('#item-search :button').on('click', function () {
-    let value = $('#item-search input').val()
+$('#item-search input').on('change', function () {
+    let value = $(this).val()
 
     $('#item-list').load('/Home/ItemList', { search: value })
 })
