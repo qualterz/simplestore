@@ -1,5 +1,6 @@
 ﻿using AutoMapper;
 using Microsoft.AspNetCore.Mvc;
+using SimpleStore.Application.Models;
 using SimpleStore.Application.Services;
 using SimpleStore.Web.Areas.Store.Services;
 using SimpleStore.Web.Areas.Store.ViewModels;
@@ -37,6 +38,26 @@ namespace SimpleStore.Web.Areas.Store.Controllers
                 e => e.InCart = cartItems.Any(c => c.Item.ItemId == e.ItemId));
 
             return View(itemViewModels);
+        }
+
+        public PartialViewResult ItemList(string search)
+        {
+            search = search?.Trim();
+            var items = itemService.GetItemList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                items = items.Where(
+                    e => e.Name.Contains(search)).ToList();
+            }
+
+            var itemViewModels = mapper.Map<List<ItemViewModel>>(items);
+
+            var cartItems = cartService.GetItems();
+            itemViewModels.ForEach(
+                e => e.InCart = cartItems.Any(c => c.Item.ItemId == e.ItemId));
+
+            return PartialView("_ItemList", itemViewModels);
         }
     }
 }

@@ -67,3 +67,9 @@ $('#cart-item-list input[name="quantity"]').on('change', function () {
         $('#checkout').load('/Cart/CheckoutPartial')
     })
 })
+
+$('#item-search :button').on('click', function () {
+    let value = $('#item-search input').val()
+
+    $('#item-list').load('/Home/ItemList', { search: value })
+})
