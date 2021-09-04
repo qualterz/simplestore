@@ -1,4 +1,6 @@
-﻿<!DOCTYPE html>
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels;
+
+<!DOCTYPE html>
 <html>
 <head>
     <meta charset="utf-8" />
@@ -6,12 +8,42 @@
 
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap-icons.css" />
     <link rel="stylesheet" href="~/lib/bootstrap/css/bootstrap.css" />
+
+    <style>
+        body {
+            overflow-y: scroll;
+        }
+    </style>
 </head>
 <body>
+    <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
+        <div class="container-xxl">
+            <a class="navbar-brand fw-light"
+               asp-area="Store" asp-controller="Home" asp-action="Index">
+                <span class="fw-bolder">Simple</span>Store
+            </a>
+        </div>
+    </nav>
+
     <div class="container-xxl my-3">
+        @if (ViewBag.TabType is not null)
+        {
+            var tabType = ViewBag.TabType;
+
+            <ul class="nav nav-tabs">
+                <li class="nav-item">
+                    <a class="nav-link @(tabType == TabType.Items ? "active" : "")"
+                       asp-controller="Items" asp-action="Index">
+                        Items
+                    </a>
+                </li>
+            </ul>
+        }
+
         @RenderBody()
     </div>
 
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="~/lib/jquery/jquery.js"></script>
 </body>
 </html>
