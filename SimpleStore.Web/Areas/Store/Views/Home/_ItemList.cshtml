@@ -1,6 +1,6 @@
 ﻿@model IReadOnlyList<SimpleStore.Web.Areas.Store.ViewModels.ItemViewModel>
 
-<div class="row row-cols-1" id="item-list">
+<div class="row row-cols-1">
     @foreach (var item in Model)
     {
         <partial name="_Item" model="item" />
