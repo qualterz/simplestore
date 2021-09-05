@@ -21,11 +21,8 @@ namespace SimpleStore.Web
         public void ConfigureServices(IServiceCollection services)
         {
             ConfigureSimpleStoreServices(services);
-
             ConfigureSession(services);
-
-            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-                .AddCookie();
+            ConfigureAuthentication(services);
 
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
@@ -129,6 +126,14 @@ namespace SimpleStore.Web
                 options.Cookie.HttpOnly = true;
                 options.Cookie.IsEssential = true;
             });
+        }
+
+        public void ConfigureAuthentication(IServiceCollection services)
+        {
+            var scheme = CookieAuthenticationDefaults.AuthenticationScheme;
+
+            services.AddAuthentication(scheme)
+                .AddCookie();
         }
     }
 }
