@@ -10,6 +10,7 @@ using SimpleStore.Infrastructure;
 using SimpleStore.Infrastructure.Repositories;
 using System;
 using SimpleStore.Web.Areas.Store.Services;
+using Microsoft.AspNetCore.Identity;
 
 namespace SimpleStore.Web
 {
@@ -19,18 +20,12 @@ namespace SimpleStore.Web
         {
             ConfigureSimpleStoreServices(services);
 
+            ConfigureSession(services);
+
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
 
             services.AddDistributedMemoryCache();
-
-            services.AddSession(options =>
-            {
-                options.IdleTimeout = TimeSpan.FromSeconds(10);
-                options.Cookie.HttpOnly = true;
-                options.Cookie.IsEssential = true;
-            });
-
             services.AddHttpContextAccessor();
         }
 
@@ -41,9 +36,11 @@ namespace SimpleStore.Web
                 app.UseDeveloperExceptionPage();
             }
 
-            app.UseStaticFiles();
-            app.UseRouting();
             app.UseSession();
+
+            app.UseStaticFiles();
+
+            app.UseRouting();
 
             app.UseEndpoints(endpoints =>
             {
@@ -100,6 +97,16 @@ namespace SimpleStore.Web
             {
                 options.UseSqlite("Data Source=simplestore.db");
                 options.UseLazyLoadingProxies();
+            });
+        }
+
+        public void ConfigureSession(IServiceCollection services)
+        {
+            services.AddSession(options =>
+            {
+                options.IdleTimeout = TimeSpan.FromMinutes(2);
+                options.Cookie.HttpOnly = true;
+                options.Cookie.IsEssential = true;
             });
         }
     }
