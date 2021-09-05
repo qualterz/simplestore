@@ -11,6 +11,8 @@ using SimpleStore.Infrastructure.Repositories;
 using System;
 using SimpleStore.Web.Areas.Store.Services;
 using Microsoft.AspNetCore.Identity;
+using Microsoft.AspNetCore.Http;
+using Microsoft.AspNetCore.Authentication.Cookies;
 
 namespace SimpleStore.Web
 {
@@ -21,6 +23,9 @@ namespace SimpleStore.Web
             ConfigureSimpleStoreServices(services);
 
             ConfigureSession(services);
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+                .AddCookie();
 
             services.AddControllersWithViews()
                     .AddRazorRuntimeCompilation();
@@ -42,6 +47,9 @@ namespace SimpleStore.Web
 
             app.UseRouting();
 
+            app.UseAuthentication();
+            app.UseAuthorization();
+
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapAreaControllerRoute(
@@ -55,7 +63,20 @@ namespace SimpleStore.Web
                     areaName: "Administration",
                     pattern: "Administration/{controller=Home}/{action=Index}/{id?}"
                 );
+
+                endpoints.MapAreaControllerRoute(
+                    name: "account",
+                    areaName: "Account",
+                    pattern: "Account/{controller=Login}/{action=Index}/{id?}"
+                );
             });
+
+            var cookiePolicyOptions = new CookiePolicyOptions()
+            {
+                MinimumSameSitePolicy = SameSiteMode.Strict,
+            };
+
+            app.UseCookiePolicy(cookiePolicyOptions);
         }
 
         public void ConfigureSimpleStoreServices(IServiceCollection services)

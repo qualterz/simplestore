@@ -1,4 +1,5 @@
 ﻿using AutoMapper;
+using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Application.Models;
 using SimpleStore.Application.Services;
@@ -7,6 +8,7 @@ using System.Collections.Generic;
 
 namespace SimpleStore.Web.Areas.Administration.Controllers
 {
+    [Authorize]
     [Area("Administration")]
     public class ItemsController : Controller
     {

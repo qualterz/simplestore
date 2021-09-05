@@ -17,24 +17,38 @@
 </head>
 <body>
     <nav class="navbar sticky-top navbar-expand-lg navbar-light bg-light">
-        <div class="container-xxl">
+        <div class="container-xxl d-flex align-items-baseline">
             <a class="navbar-brand fw-light"
                asp-area="Store" asp-controller="Home" asp-action="Index">
                 <span class="fw-bolder">Simple</span>Store
             </a>
-            @if (ViewBag.TabType is not null)
-            {
-                var tabType = ViewBag.TabType;
 
-                <ul class="nav nav-pills">
+            <ul class="nav nav-pills me-auto">
+                <li class="nav-item">
+                    <form class="d-inline-block" method="post"
+                          asp-route-returnUrl="@Context.Request.Path" asp-area="Account"
+                          asp-controller="Login" asp-action="Logout">
+                        <button class="btn btn-toolbar" type="submit">
+                            Logout
+                        </button>
+                    </form>
+                </li>
+            </ul>
+
+            <ul class="nav nav-pills">
+                @if (ViewBag.TabType is not null)
+                {
+                    var tabType = ViewBag.TabType;
+
                     <li class="nav-item">
                         <a class="nav-link @(tabType == TabType.Items ? "active" : "")"
                            asp-controller="Items" asp-action="Index">
                             Items
                         </a>
                     </li>
-                </ul>
-            }
+                }
+            </ul>
+
         </div>
     </nav>
 

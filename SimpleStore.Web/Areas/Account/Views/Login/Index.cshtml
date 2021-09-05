@@ -1,0 +1,17 @@
+﻿@using SimpleStore.Web.Areas.Account.ViewModels
+@model LoginViewModel
+
+<form method="post" asp-action="Login">
+    <div class="d-flex flex-column text-center gap-1">
+        <div class="form-floating">
+            <input class="form-control" id="floatingUsername" placeholder="Username" asp-for="Username">
+            <label for="floatingUsername">Username</label>
+        </div>
+        <div class="form-floating">
+            <input class="form-control" id="floatingPassword" placeholder="Password" asp-for="Password">
+            <label for="floatingPassword">Password</label>
+        </div>
+
+        <button class="w-100 btn btn-lg btn-primary" type="submit">Login</button>
+    </div>
+</form>
