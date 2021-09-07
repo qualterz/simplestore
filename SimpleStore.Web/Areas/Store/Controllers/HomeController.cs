@@ -14,6 +14,14 @@ namespace SimpleStore.Web.Areas.Store.Controllers
     [Area("Store")]
     public class HomeController : Controller
     {
+        public enum SortType
+        {
+            Newest,
+            Popular,
+            LowPrice,
+            HighPrice,
+        };
+
         private readonly IItemService itemService;
         private readonly ICartService cartService;
         private readonly IMapper mapper;
@@ -40,7 +48,7 @@ namespace SimpleStore.Web.Areas.Store.Controllers
             return View(itemViewModels);
         }
 
-        public PartialViewResult ItemList(string search)
+        public PartialViewResult ItemList(string search, SortType sortType)
         {
             var keywords = search?.Trim().ToLower().Split();
             var items = itemService.GetItemList();
@@ -72,11 +80,21 @@ namespace SimpleStore.Web.Areas.Store.Controllers
                 }
             }
 
+            var sorted = sortType switch
+            {
+                SortType.Newest => items.OrderBy(e => e.ItemId),
+                SortType.Popular => items.OrderBy(e => e.Ordered),
+                SortType.LowPrice => items.OrderBy(e => e.Price),
+                SortType.HighPrice => items.OrderByDescending(e => e.Price),
+                _ => items as IOrderedEnumerable<ItemModel>,
+            };
+
+            items = sorted.ToList();
+
             var itemViewModels = mapper.Map<List<ItemViewModel>>(items);
 
-            var cartItems = cartService.GetItems();
             itemViewModels.ForEach(
-                e => e.InCart = cartItems.Any(c => c.Item.ItemId == e.ItemId));
+                e => e.InCart = cartService.Contains(e.ItemId));
 
             return PartialView("_ItemList", itemViewModels);
         }

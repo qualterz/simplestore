@@ -8,6 +8,7 @@ namespace SimpleStore.Web.Areas.Store.ViewModels
         public int ItemId { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
+        public int Ordered { get; set; }
         public bool InCart { get; set; }
 
         public List<CharacteristicViewModel> Characteristics { get; set; }

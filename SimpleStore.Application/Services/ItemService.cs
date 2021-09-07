@@ -20,9 +20,13 @@ namespace SimpleStore.Application.Services
     public class ItemService : IItemService
     {
         private readonly IItemRepository itemRepository;
-        public ItemService(IItemRepository itemRepository)
+        private readonly IOrderDetailRepository orderDetailRepository;
+        public ItemService(
+            IItemRepository itemRepository,
+            IOrderDetailRepository orderDetailRepository)
         {
             this.itemRepository = itemRepository;
+            this.orderDetailRepository = orderDetailRepository;
         }
 
         private readonly IMapper mapper = ObjectMapper.Mapper;
@@ -30,14 +34,32 @@ namespace SimpleStore.Application.Services
         public List<ItemModel> GetItemList()
         {
             var itemList = itemRepository.Entities.ToList();
-            return mapper.Map<List<ItemModel>>(itemList);
+            var mapped = mapper.Map<List<ItemModel>>(itemList);
+
+            foreach (var item in mapped)
+            {
+                var quantity = orderDetailRepository.Entities
+                    .Where(
+                        e => e.ItemId == item.ItemId).Sum(e => e.Quantity);
+                item.Ordered = quantity;
+            }
+
+            return mapped;
         }
 
         public ItemModel GetItemById(int itemId)
         {
             var item = itemRepository.Entities
                 .SingleOrDefault(e => e.ItemId == itemId);
-            return mapper.Map<ItemModel>(item);
+            var mapped = mapper.Map<ItemModel>(item);
+
+            var quantity = orderDetailRepository.Entities
+                    .SingleOrDefault(
+                        e => e.ItemId == item.ItemId)?.Quantity;
+
+            mapped.Ordered = quantity ?? default;
+
+            return mapped;
         }
 
         public ItemModel AddItem(ItemModel itemModel)
