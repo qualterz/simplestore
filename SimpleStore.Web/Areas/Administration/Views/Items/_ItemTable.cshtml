@@ -1,0 +1,19 @@
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels
+@model IEnumerable<ItemViewModel>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Name</th>
+            <th>Price</th>
+            <th></th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <partial name="_Item" model="item" />
+        }
+    </tbody>
+</table>

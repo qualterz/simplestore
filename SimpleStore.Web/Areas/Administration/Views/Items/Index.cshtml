@@ -3,52 +3,22 @@
     ViewBag.TabType = SimpleStore.Web.Areas.Administration.ViewModels.TabType.Items;
 }
 
-
 <div class="card">
     <div class="card-body d-flex flex-column">
-        <a class="btn btn-success me-auto" asp-action="Edit">
-            <i class="bi bi-bag-plus"></i>
-            New
-        </a>
-        <table class="table table-responsive">
-            <thead>
-                <tr>
-                    <th>Number</th>
-                    <th>Name</th>
-                    <th>Price</th>
-                    <th></th>
-                </tr>
-            </thead>
-            <tbody>
-                @foreach (var item in Model)
-                {
-                    <tr>
-                        <td>@item.ItemId</td>
-                        <td>
-                            <a asp-route-id="@item.ItemId" asp-area="Store"
-                               asp-controller="Item" asp-action="Index">
-                                @item.Name
-                            </a>
-                        </td>
-                        <td>@item.Price</td>
-                        <td class="d-flex">
-                            <div class="d-flex ms-auto">
-                                <a class="btn btn-sm btn-outline-warning mx-1"
-                                   asp-route-id="@item.ItemId" asp-action="Edit">
-                                    <i class="bi bi-pencil-square"></i>
-                                    Edit
-                                </a>
-                                <form method="post" asp-route-id="@item.ItemId" asp-action="Delete">
-                                    <button class="btn btn-sm btn-outline-danger mx-1">
-                                        <i class="bi bi-trash"></i>
-                                        Delete
-                                    </button>
-                                </form>
-                            </div>
-                        </td>
-                    </tr>
-                }
-            </tbody>
-        </table>
+        <div class="d-flex align-items-start">
+            <a class="btn btn-success me-auto" asp-action="Edit">
+                <i class="bi bi-bag-plus"></i>
+                New
+            </a>
+
+            <div id="item-search">
+                <partial name="_Search" />
+            </div>
+
+        </div>
+
+        <div id="item-table">
+            <partial name="_ItemTable" model="Model"/>
+        </div>
     </div>
 </div>

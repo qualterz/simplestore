@@ -5,6 +5,7 @@ using SimpleStore.Application.Models;
 using SimpleStore.Application.Services;
 using SimpleStore.Web.Areas.Administration.ViewModels;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace SimpleStore.Web.Areas.Administration.Controllers
 {
@@ -98,6 +99,23 @@ namespace SimpleStore.Web.Areas.Administration.Controllers
             characteristicService.UnassignCharacteristic(characteristicId, itemId);
 
             return RedirectToAction("Edit", new { id = itemId });
+        }
+
+        public PartialViewResult ItemTable(string search)
+        {
+            search = search?.Trim().ToLower();
+            var items = itemService.GetItemList();
+
+            if (!string.IsNullOrEmpty(search))
+            {
+                items = items.Where(
+                    e => e.ItemId.ToString() == search ||
+                    e.Name.ToLower().Contains(search)).ToList();
+            }
+
+            var itemViewModels = mapper.Map<List<ItemViewModel>>(items);
+
+            return PartialView("_ItemTable", itemViewModels);
         }
     }
 }

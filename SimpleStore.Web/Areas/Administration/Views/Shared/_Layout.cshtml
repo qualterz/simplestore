@@ -40,15 +40,14 @@
                 {
                     var tabType = ViewBag.TabType;
 
-                    <li class="nav-item">
-                        <a class="nav-link @(tabType == TabType.Items ? "active" : "")"
-                           asp-controller="Items" asp-action="Index">
-                            Items
-                        </a>
-                    </li>
+                <li class="nav-item">
+                    <a class="nav-link @(tabType == TabType.Items ? "active" : "")"
+                       asp-controller="Items" asp-action="Index">
+                        Items
+                    </a>
+                </li>
                 }
             </ul>
-
         </div>
     </nav>
 
@@ -58,5 +57,6 @@
 
     <script src="~/lib/bootstrap/js/bootstrap.js"></script>
     <script src="~/lib/jquery/jquery.js"></script>
+    <script src="~/js/administration.js"></script>
 </body>
 </html>

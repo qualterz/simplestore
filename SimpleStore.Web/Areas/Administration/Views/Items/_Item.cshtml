@@ -1,0 +1,28 @@
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels
+@model ItemViewModel
+
+<tr>
+    <td>@Model.ItemId</td>
+    <td>
+        <a asp-route-id="@Model.ItemId" asp-area="Store"
+           asp-controller="Item" asp-action="Index">
+            @Model.Name
+        </a>
+    </td>
+    <td>@Model.Price</td>
+    <td class="d-flex">
+        <div class="d-flex ms-auto">
+            <a class="btn btn-sm btn-outline-warning mx-1"
+               asp-route-id="@Model.ItemId" asp-action="Edit">
+                <i class="bi bi-pencil-square"></i>
+                Edit
+            </a>
+            <form method="post" asp-route-id="@Model.ItemId" asp-action="Delete">
+                <button class="btn btn-sm btn-outline-danger mx-1">
+                    <i class="bi bi-trash"></i>
+                    Delete
+                </button>
+            </form>
+        </div>
+    </td>
+</tr>
