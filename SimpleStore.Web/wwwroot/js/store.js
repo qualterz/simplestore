@@ -70,16 +70,16 @@ $('#cart-item-list input[name="quantity"]').on('change', function () {
 
 $('#item-search input').on('change', function () {
     let search = $(this).val()
-    let sortType = $('#item-sort select').val()
+    let orderType = $('#item-sort select').val()
     
     $('#item-list').load('/Home/ItemList',
-        { search: search, sortType: sortType })
+        { search: search, orderType: orderType })
 })
 
 $('#item-sort select').on('change', function () {
     let search = $('#item-search input').val()
-    let sortType = $(this).val()
+    let orderType = $(this).val()
 
     $('#item-list').load('/Home/ItemList',
-        { search: search, sortType: sortType })
+        { search: search, orderType: orderType })
 })

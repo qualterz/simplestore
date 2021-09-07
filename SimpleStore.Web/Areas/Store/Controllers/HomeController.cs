@@ -13,7 +13,7 @@ namespace SimpleStore.Web.Areas.Store.Controllers
     [Area("Store")]
     public class HomeController : Controller
     {
-        public enum SortType
+        public enum OrderType
         {
             Newest,
             Popular,
@@ -35,7 +35,7 @@ namespace SimpleStore.Web.Areas.Store.Controllers
             return View(items);
         }
 
-        public PartialViewResult ItemList(string search, SortType sortType)
+        public PartialViewResult ItemList(string search, OrderType orderType)
         {
             var keywords = search?.Trim().ToLower().Split();
             var items = itemService.GetItemList();
@@ -67,12 +67,12 @@ namespace SimpleStore.Web.Areas.Store.Controllers
                 }
             }
 
-            var sorted = sortType switch
+            var sorted = orderType switch
             {
-                SortType.Newest => items.OrderByDescending(e => e.ItemId),
-                SortType.Popular => items.OrderByDescending(e => e.Ordered),
-                SortType.LowPrice => items.OrderBy(e => e.Price),
-                SortType.HighPrice => items.OrderByDescending(e => e.Price),
+                OrderType.Newest => items.OrderByDescending(e => e.ItemId),
+                OrderType.Popular => items.OrderByDescending(e => e.Ordered),
+                OrderType.LowPrice => items.OrderBy(e => e.Price),
+                OrderType.HighPrice => items.OrderByDescending(e => e.Price),
                 _ => items as IOrderedEnumerable<ItemViewModel>,
             };
 
