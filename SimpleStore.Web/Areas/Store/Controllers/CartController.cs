@@ -78,7 +78,9 @@ namespace SimpleStore.Web.Areas.Store.Controllers
             orderService.CreateOrder(order);
             cartService.ClearCart();
 
-            return RedirectToAction("Index", "Home");
+            ViewData["SuccessfullyOrdered"] = true;
+
+            return View("Index", cartService.GetItems());
         }
     }
 }

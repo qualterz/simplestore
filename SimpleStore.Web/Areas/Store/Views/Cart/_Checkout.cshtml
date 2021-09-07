@@ -12,6 +12,14 @@
                 <span class="fw-lighter">credits</span>
             </div>
         }
+
+        @if (ViewData["SuccessfullyOrdered"] is not null)
+        {
+            <div class="alert alert-success" role="alert">
+                Order succefully submitted. Thank you for your purchase!
+            </div>
+        }
+
         <div class="d-flex align-items-baseline">
             <a class="btn btn-outline-secondary" asp-controller="Home" asp-action="Index">
                 Continue Shopping
