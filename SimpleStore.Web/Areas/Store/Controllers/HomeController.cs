@@ -42,13 +42,16 @@ namespace SimpleStore.Web.Areas.Store.Controllers
 
         public PartialViewResult ItemList(string search)
         {
-            search = search?.Trim();
+            search = search?.Trim().ToLower();
             var items = itemService.GetItemList();
 
             if (!string.IsNullOrEmpty(search))
             {
                 items = items.Where(
-                    e => e.Name.Contains(search)).ToList();
+                    e => e.Name.ToLower().Contains(search) ||
+                    e.Characteristics.Any(
+                        e => e.Value.ToLower().Contains(search)))
+                    .ToList();
             }
 
             var itemViewModels = mapper.Map<List<ItemViewModel>>(items);
