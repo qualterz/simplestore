@@ -13,12 +13,12 @@ namespace SimpleStore.Web.Areas.Store.Controllers
     [Area("Store")]
     public class CartController : Controller
     {
-        private readonly ICartService cartService;
+        private readonly ICartControllerService cartService;
         private readonly IOrderService orderService;
         private readonly IMapper mapper;
 
         public CartController(
-            ICartService cartService,
+            ICartControllerService cartService,
             IOrderService orderService,
             IMapper mapper)
         {

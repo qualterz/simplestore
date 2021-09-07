@@ -54,10 +54,10 @@ namespace SimpleStore.Application.Services
             var mapped = mapper.Map<ItemModel>(item);
 
             var quantity = orderDetailRepository.Entities
-                    .SingleOrDefault(
-                        e => e.ItemId == item.ItemId)?.Quantity;
+                    .Where(
+                        e => e.ItemId == item.ItemId).Sum(e => e.Quantity);
 
-            mapped.Ordered = quantity ?? default;
+            mapped.Ordered = quantity;
 
             return mapped;
         }

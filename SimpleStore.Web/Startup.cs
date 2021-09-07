@@ -98,6 +98,7 @@ namespace SimpleStore.Web
 
             #region Web
             services.AddAutoMapper(typeof(Startup));
+            services.AddScoped<IItemControllerService, ItemControllerService>();
             #endregion
 
             #region Web Administration
@@ -105,7 +106,7 @@ namespace SimpleStore.Web
             #endregion
 
             #region Web Store
-            services.AddScoped<ICartService, CartService>();
+            services.AddScoped<ICartControllerService, CartControllerService>();
             #endregion
         }
 

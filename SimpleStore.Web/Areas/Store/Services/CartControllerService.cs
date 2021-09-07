@@ -10,7 +10,7 @@ using SimpleStore.Application.Services;
 
 namespace SimpleStore.Web.Areas.Store.Services
 {
-    public interface ICartService
+    public interface ICartControllerService
     {
         public List<CartItemViewModel> GetItems();
 
@@ -21,7 +21,7 @@ namespace SimpleStore.Web.Areas.Store.Services
         void ClearCart();
     }
 
-    public class CartService : ICartService
+    public class CartControllerService : ICartControllerService
     {
         private readonly IMapper mapper;
         private readonly ISession session;
@@ -29,7 +29,7 @@ namespace SimpleStore.Web.Areas.Store.Services
 
         private readonly List<CartItemViewModel> items;
 
-        public CartService(
+        public CartControllerService(
             IMapper mapper,
             IHttpContextAccessor httpContextAccessor,
             IItemService itemService)
