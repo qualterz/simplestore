@@ -12,9 +12,17 @@
                 <partial name="_AddToCartButton" model="Model" />
             </div>
         </div>
-        <small class="card-subtitle mt-2 ms-auto">
-            @Model.Price
-            <span class="fw-lighter">credits</span>
-        </small>
+        <div class="card-subtitle d-flex justify-content-between mt-2">
+            <small>
+                @Model.Ordered
+                <span class="fw-lighter">orders</span>
+            </small>
+            <small>
+                @Model.Price
+                <span class="fw-lighter">credits</span>
+            </small>
+        </div>
+
+        
     </div>
 </div>
