@@ -69,7 +69,7 @@ namespace SimpleStore.Web.Areas.Store.Controllers
 
             var sorted = sortType switch
             {
-                SortType.Newest => items.OrderBy(e => e.ItemId),
+                SortType.Newest => items.OrderByDescending(e => e.ItemId),
                 SortType.Popular => items.OrderByDescending(e => e.Ordered),
                 SortType.LowPrice => items.OrderBy(e => e.Price),
                 SortType.HighPrice => items.OrderByDescending(e => e.Price),
