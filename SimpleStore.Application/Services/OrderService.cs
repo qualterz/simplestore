@@ -13,6 +13,8 @@ namespace SimpleStore.Application.Services
 {
     public interface IOrderService
     {
+        OrderModel GetOrderById(int orderId);
+        List<OrderModel> GetOrderList();
         OrderModel CreateOrder(OrderModel orderModel);
     }
 
@@ -46,6 +48,19 @@ namespace SimpleStore.Application.Services
 
             order.Timestamp = DateTime.UtcNow;
             order = orderRepository.Add(order);
+            return mapper.Map<OrderModel>(order);
+        }
+
+        public List<OrderModel> GetOrderList()
+        {
+            var orders = orderRepository.Entities.ToList();
+            return mapper.Map<List<OrderModel>>(orders);
+        }
+
+        public OrderModel GetOrderById(int orderId)
+        {
+            var order = orderRepository.Entities
+                .Single(e => e.OrderId == orderId);
             return mapper.Map<OrderModel>(order);
         }
     }

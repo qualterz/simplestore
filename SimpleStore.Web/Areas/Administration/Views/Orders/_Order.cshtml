@@ -1,0 +1,14 @@
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels
+@model OrderViewModel
+
+<tr>
+    <td>@Model.OrderId</td>
+    <td>
+        <a asp-route-id="@Model.OrderId" asp-action="Details">
+            @Model.Details.Count
+        </a>
+    </td>
+    <td>@Model.Details.Sum(e => e.Quantity)</td>
+    <td>@Model.Details.Sum(e => e.Quantity * e.Item.Price)</td>
+    <td>@Model.TimeStamp</td>
+</tr>

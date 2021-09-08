@@ -1,0 +1,19 @@
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels
+@model IEnumerable<OrderViewModel>
+@{
+    ViewBag.TabType = TabType.Orders;
+}
+
+<div class="card">
+    <div class="card-body d-flex flex-column">
+        <div class="d-flex align-items-start">
+            <div class="ms-auto" id="order-search">
+                <partial name="_Search" />
+            </div>
+        </div>
+
+        <div id="order-table">
+            <partial name="_OrderTable" model="Model" />
+        </div>
+    </div>
+</div>

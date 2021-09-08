@@ -40,10 +40,14 @@
                 {
                     var tabType = ViewBag.TabType;
 
-                <li class="nav-item">
+                <li class="nav-item d-flex">
                     <a class="nav-link @(tabType == TabType.Items ? "active" : "")"
                        asp-controller="Items" asp-action="Index">
                         Items
+                    </a>
+                    <a class="nav-link @(tabType == TabType.Orders ? "active" : "")"
+                       asp-controller="Orders" asp-action="Index">
+                        Orders
                     </a>
                 </li>
                 }

@@ -30,6 +30,12 @@ namespace SimpleStore.Web.Mappings
 
             CreateMap<CategoryModel, CategoryViewModel>()
                 .ReverseMap();
+
+            CreateMap<OrderModel, OrderViewModel>()
+                .ReverseMap();
+
+            CreateMap<OrderDetailModel, OrderDetailViewModel>()
+                .ReverseMap();
         }
     }
 }

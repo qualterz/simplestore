@@ -1,0 +1,20 @@
+﻿@using SimpleStore.Web.Areas.Administration.ViewModels
+@model IEnumerable<OrderViewModel>
+
+<table class="table table-responsive">
+    <thead>
+        <tr>
+            <th>Number</th>
+            <th>Items</th>
+            <th>Quantity</th>
+            <th>Total</th>
+            <th>Timestamp</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var order in Model)
+        {
+            <partial name="_Order" model="order" />
+        }
+    </tbody>
+</table>
