@@ -35,6 +35,9 @@ namespace SimpleStore.Web.Mappings
                     options => options.MapFrom(
                         source => source.Quantity))
                 .ReverseMap();
+
+            CreateMap<CategoryModel, CategoryViewModel>()
+                .ReverseMap();
         }
     }
 }

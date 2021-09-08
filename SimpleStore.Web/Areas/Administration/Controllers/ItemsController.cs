@@ -15,15 +15,18 @@ namespace SimpleStore.Web.Areas.Administration.Controllers
     {
         private readonly IItemService itemService;
         private readonly ICharacteristicService characteristicService;
+        private readonly ICategoryService categoryService;
         private readonly IMapper mapper;
 
         public ItemsController(
             IItemService itemService,
             ICharacteristicService characteristicService,
+            ICategoryService categoryService,
             IMapper mapper)
         {
             this.itemService = itemService;
             this.characteristicService = characteristicService;
+            this.categoryService = categoryService;
             this.mapper = mapper;
         }
 
@@ -55,7 +58,21 @@ namespace SimpleStore.Web.Areas.Administration.Controllers
             if (!ModelState.IsValid)
                 return View("Edit", itemViewModel);
 
+            var category = categoryService
+                .GetCategoryByName(itemViewModel.CategoryName);
+
+            if (category is null)
+            {
+                var categoryModel = new CategoryModel()
+                {
+                    Name = itemViewModel.CategoryName,
+                };
+
+                category = categoryService.AddCategory(categoryModel);
+            }
+
             var item = mapper.Map<ItemModel>(itemViewModel);
+            item.Category = category;
 
             if (itemViewModel.ItemId == default)
             {
@@ -65,6 +82,7 @@ namespace SimpleStore.Web.Areas.Administration.Controllers
             else
             {
                 itemService.UpdateItem(item);
+                categoryService.AssignCategory(category, itemViewModel.ItemId);
             }
 
             return RedirectToAction("Index");

@@ -9,7 +9,7 @@ namespace SimpleStore.Application.Models
         public decimal Price { get; set; }
         public int Ordered { get; set; }
 
-        public List<CategoryModel> Categories { get; set; }
+        public CategoryModel Category { get; set; }
         public List<CharacteristicModel> Characteristics { get; set; }
     }
 }

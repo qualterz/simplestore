@@ -6,7 +6,10 @@
         <partial name="_AddToCartButton" model="Model" />
     </div>
 </div>
-<div class="d-flex flex-row ms-1 gap-3 mb-3">
+
+<h5>@Model.Category.Name</h5>
+
+<div class="d-flex flex-row gap-3 mb-3">
     <p>@Model.Price <span class="fw-lighter">credits</span></p>
     <p>@Model.Ordered <span class="fw-lighter">orders</span></p>
 </div>

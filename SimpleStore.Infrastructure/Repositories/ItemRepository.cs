@@ -10,10 +10,15 @@ namespace SimpleStore.Infrastructure.Repositories
         {
         }
 
+        public Item GetById(int itemId)
+        {
+            return Entities.SingleOrDefault(e => e.ItemId == itemId);
+        }
+
         public void DeleteById(int itemId)
         {
             var item = Entities.Single(e => e.ItemId == itemId);
             Delete(item);
-        }   
+        }
     }
 }

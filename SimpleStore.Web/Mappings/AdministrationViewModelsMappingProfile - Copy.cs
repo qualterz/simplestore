@@ -27,6 +27,9 @@ namespace SimpleStore.Web.Mappings
                     options => options.MapFrom(
                         source => source.CharacteristicId))
                 .ReverseMap();
+
+            CreateMap<CategoryModel, CategoryViewModel>()
+                .ReverseMap();
         }
     }
 }
