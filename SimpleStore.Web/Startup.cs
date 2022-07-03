@@ -3,14 +3,12 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
-using AutoMapper;
 using SimpleStore.Application.Services;
 using SimpleStore.Core.Repositories;
 using SimpleStore.Infrastructure;
 using SimpleStore.Infrastructure.Repositories;
 using System;
 using SimpleStore.Web.Areas.Store.Services;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Authentication.Cookies;
 
