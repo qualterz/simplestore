@@ -1,5 +1,7 @@
 # SimpleStore
 
+A coursework project i wrote to learn the MVC pattern in AspNetCore
+
 ## Docker
 
 ```bash
