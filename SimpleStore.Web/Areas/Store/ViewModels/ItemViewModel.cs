@@ -1,5 +1,4 @@
-﻿using AutoMapper;
-using System.Collections.Generic;
+﻿using System.Collections.Generic;
 
 namespace SimpleStore.Web.Areas.Store.ViewModels
 {

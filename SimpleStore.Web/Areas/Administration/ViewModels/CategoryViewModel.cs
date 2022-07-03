@@ -1,9 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-
-namespace SimpleStore.Web.Areas.Administration.ViewModels
+﻿namespace SimpleStore.Web.Areas.Administration.ViewModels
 {
     public class CategoryViewModel
     {

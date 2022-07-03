@@ -3,11 +3,8 @@ using SimpleStore.Application.Mapper;
 using SimpleStore.Application.Models;
 using SimpleStore.Core.Entities;
 using SimpleStore.Core.Repositories;
-using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SimpleStore.Application.Services
 {

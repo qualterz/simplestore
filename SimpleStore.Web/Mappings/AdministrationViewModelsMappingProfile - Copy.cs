@@ -1,8 +1,6 @@
 ﻿using AutoMapper;
 using SimpleStore.Application.Models;
 using SimpleStore.Web.Areas.Administration.ViewModels;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace SimpleStore.Web.Mappings
 {

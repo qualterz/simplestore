@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace SimpleStore.Web.Areas.Store.ViewModels
+﻿namespace SimpleStore.Web.Areas.Store.ViewModels
 {
     public class CharacteristicViewModel
     {

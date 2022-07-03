@@ -1,9 +1,6 @@
 ﻿using Microsoft.AspNetCore.Http;
-using System;
 using System.Linq;
-using System.Collections;
 using System.Collections.Generic;
-using System.Threading.Tasks;
 using AutoMapper;
 using SimpleStore.Web.Areas.Store.ViewModels;
 using SimpleStore.Application.Services;

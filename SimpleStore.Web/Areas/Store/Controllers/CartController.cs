@@ -3,10 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using SimpleStore.Application.Models;
 using SimpleStore.Application.Services;
 using SimpleStore.Web.Areas.Store.Services;
-using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
 
 namespace SimpleStore.Web.Areas.Store.Controllers
 {
