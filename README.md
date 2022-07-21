@@ -15,6 +15,7 @@ A coursework project i wrote to learn the MVC pattern in AspNetCore
 ```bash
 # Build image
 docker build --tag simplestore --file Dockerfile .
+
 # Run image
 docker run --network=host simplestore
 ```
